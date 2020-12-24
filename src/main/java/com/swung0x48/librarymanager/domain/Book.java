@@ -1,4 +1,4 @@
-package com.swung0x48.librarymanager.Domain;
+package com.swung0x48.librarymanager.domain;
 
 public class Book {
     int bookID;

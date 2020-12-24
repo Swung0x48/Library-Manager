@@ -1,6 +1,6 @@
-package com.swung0x48.librarymanager.Repository;
+package com.swung0x48.librarymanager.repository;
 
-import com.swung0x48.librarymanager.Domain.Book;
+import com.swung0x48.librarymanager.domain.Book;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
