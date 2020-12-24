@@ -1,4 +1,4 @@
-package com.swung0x48.librarymanager.Domain;
+package com.swung0x48.librarymanager.domain;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

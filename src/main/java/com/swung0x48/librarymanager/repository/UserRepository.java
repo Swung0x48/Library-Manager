@@ -1,6 +1,6 @@
-package com.swung0x48.librarymanager.Repository;
+package com.swung0x48.librarymanager.repository;
 
-import com.swung0x48.librarymanager.Domain.LibUser;
+import com.swung0x48.librarymanager.domain.LibUser;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -29,5 +29,5 @@ public interface UserRepository {
 
     @Insert("insert into libusers(userName,password,role)" +
             "values(#{userName},#{password},#{role})")
-    void registerUser(LibUser libUser);
+    void addUser(LibUser libUser);
 }
