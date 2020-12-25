@@ -2,8 +2,6 @@ package com.swung0x48.librarymanager.filter;
 
 import com.swung0x48.librarymanager.RuntimeConstants;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtParser;
-import io.jsonwebtoken.JwtParserBuilder;
 import io.jsonwebtoken.Jwts;
 import org.springframework.web.filter.GenericFilterBean;
 
