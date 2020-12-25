@@ -23,7 +23,7 @@ public class UserService implements IUserService {
     public LibUser validateUser(String username, String password) throws AuthException
     {
         LibUser user = userRepository.selectUserByName(username);
-        if (user.getPassword().equals(password)) return null;
+        if (user == null || !user.getPassword().equals(password)) return null;
 
         return user;
     }

@@ -32,8 +32,7 @@ public class UserController {
             throw new AuthException("Login failed. Maybe a wrong username/password?");
         }
 
-        String token = userService.GenerateJwtToken(user);
-        map.put("token", token);
+        map.put("token", userService.GenerateJwtToken(user));
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
