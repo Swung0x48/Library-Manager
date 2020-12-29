@@ -23,5 +23,11 @@ public interface BookRepository {
     void insertBook(Book book);
 
     @Delete("delete from books where bookID=#{bookID}")
-    void deleteBook(Integer bookID);
+    Integer deleteBook(Integer bookID);
+
+    @Update("Update books set nowCount = -1000 where bookID=#{bookID}")
+    void banBook(Integer bookID);
+
+    @Update("Update books set nowCount=#{nowCount}  where bookID=#{bookID}")
+    void unbanBook(Book book);
 }

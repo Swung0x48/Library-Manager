@@ -1,10 +1,7 @@
 package com.swung0x48.librarymanager.repository;
 
 import com.swung0x48.librarymanager.domain.LibUser;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,9 +22,12 @@ public interface UserRepository {
     void banUser(Integer userId);
 
     @Update("update libusers set role='vip0' where userId=#{userId}")
-    void restoreUser(Integer userId);
+    void unbanUser(Integer userId);
 
     @Insert("insert into libusers(userName,password,role)" +
             "values(#{userName},#{password},#{role})")
     void addUser(LibUser libUser);
+
+    @Delete("delete from libusers where userId=#{userId}")
+    void deleteUser(Integer userId);
 }

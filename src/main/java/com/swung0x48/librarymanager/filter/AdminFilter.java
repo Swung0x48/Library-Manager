@@ -1,6 +1,7 @@
 package com.swung0x48.librarymanager.filter;
 
 import com.swung0x48.librarymanager.RuntimeConstants;
+import com.swung0x48.librarymanager.exception.AuthException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.web.filter.GenericFilterBean;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class AuthFilter extends GenericFilterBean {
+public class AdminFilter extends GenericFilterBean {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -34,8 +35,12 @@ public class AuthFilter extends GenericFilterBean {
                             .getBody();
 
                     httpServletRequest.setAttribute("userId", Integer.parseInt(claims.get("userId").toString()));
-                    httpServletRequest.setAttribute("role", claims.get("role"));
+                    if (!claims.get("role").equals("ADMIN")) {
+                        httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "You are not an admin");
+                        return;
+                    }
 
+                    httpServletRequest.setAttribute("role", claims.get("role"));
                 } catch (Exception e) {
                     httpServletResponse.sendError(HttpServletResponse.SC_FORBIDDEN, "Invalid token");
                     return;

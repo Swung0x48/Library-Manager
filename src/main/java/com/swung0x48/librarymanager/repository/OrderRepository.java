@@ -11,33 +11,46 @@ import java.util.List;
 @Mapper
 public interface OrderRepository {
     @Results({
-            @Result(column = "orderID",property = "orderID",id = true),
-            @Result(column = "lendTime",property = "lendTime"),
-            @Result(column = "returnTime",property = "returnTime"),
-            @Result(column = "flag",property = "flag"),
-            @Result(column = "bookID",property = "book",
-                    one = @One(select="com.pwb.libtest.repository.BookRepository.selectBookByID",fetchType= FetchType.EAGER)),
-            @Result(column = "userID",property = "libUser",
-                    one = @One(select="com.pwb.libtest.repository.UserRepository.selectUserByID",fetchType= FetchType.EAGER))
+            @Result(column = "orderID", property = "orderID", id = true),
+            @Result(column = "lendTime", property = "lendTime"),
+            @Result(column = "returnTime", property = "returnTime"),
+            @Result(column = "flag", property = "flag"),
+            @Result(column = "bookID", property = "book",
+                    one = @One(select = "com.swung0x48.librarymanager.repository.BookRepository.selectBookByID", fetchType = FetchType.EAGER)),
+            @Result(column = "userID", property = "libUser",
+                    one = @One(select = "com.swung0x48.librarymanager.repository.UserRepository.selectUserByID", fetchType = FetchType.EAGER))
     })
     @Select("select * from orders")
     List<Order> selectAllOrder();
 
     @Results({
-            @Result(column = "orderID",property = "orderID",id = true),
-            @Result(column = "lendTime",property = "lendTime"),
-            @Result(column = "returnTime",property = "returnTime"),
-            @Result(column = "flag",property = "flag"),
-            @Result(column = "bookID",property = "book",
-                    one = @One(select="com.pwb.libtest.repository.BookRepository.selectBookByID",fetchType= FetchType.EAGER)),
-            @Result(column = "userID",property = "libUser",
-                    one = @One(select="com.pwb.libtest.repository.UserRepository.selectUserByID",fetchType= FetchType.EAGER))
+            @Result(column = "orderID", property = "orderID", id = true),
+            @Result(column = "lendTime", property = "lendTime"),
+            @Result(column = "returnTime", property = "returnTime"),
+            @Result(column = "flag", property = "flag"),
+            @Result(column = "bookID", property = "book",
+                    one = @One(select = "com.swung0x48.librarymanager.repository.BookRepository.selectBookByID", fetchType = FetchType.EAGER)),
+            @Result(column = "userID", property = "libUser",
+                    one = @One(select = "com.swung0x48.librarymanager.repository.UserRepository.selectUserByID", fetchType = FetchType.EAGER))
     })
     @Select("select * from orders where userID=#{userID}")
     List<Order> selectOrderByUserId(Integer userId);
 
+    @Results({
+            @Result(column = "orderID", property = "orderID", id = true),
+            @Result(column = "lendTime", property = "lendTime"),
+            @Result(column = "returnTime", property = "returnTime"),
+            @Result(column = "flag", property = "flag"),
+            @Result(column = "bookID", property = "book",
+                    one = @One(select = "com.swung0x48.librarymanager.repository.BookRepository.selectBookByID", fetchType = FetchType.EAGER)),
+            @Result(column = "userID", property = "libUser",
+                    one = @One(select = "com.swung0x48.librarymanager.repository.UserRepository.selectUserByID", fetchType = FetchType.EAGER))
+    })
+    @Select("select * from orders where orderID=#{orderID}")
+    Order selectOrderById(Integer orderID);
+
     @Insert("insert into orders(bookID,userID,lendTime,flag) " +
-            "values(#{book.bookID},#{libuser.userId},#{lendTime},#{flag})")
+            "values(#{book.bookID},#{libUser.userId},#{lendTime},#{flag})")
     void insertOrder(Order order);
 
     @Update("Update orders set returnTime=#{returnTime},flag=#{flag} where orderID=#{orderID}")

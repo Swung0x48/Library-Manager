@@ -16,6 +16,13 @@ public class LibUser {
         this.role = role;
     }
 
+    public LibUser(String username, String password, String role)
+    {
+        this.userName = username;
+        this.password = password;
+        this.role = role;
+    }
+
     public int getUserId() {
         return userId;
     }

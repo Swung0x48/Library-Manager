@@ -11,27 +11,9 @@ public class Order {
     String returnTime;
     int flag;
 
-    public static String transTime(Date date){
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            return sdf.format(date);
-    }
-
-    public static String getSystemTime(){
-        Date date=new Date();
-        return transTime(date);
-    }
-
-    public void setReturnTime(Date returnTime) {
-        this.returnTime = transTime(returnTime);
-    }
-
-    public void setLendTime(Date lendTime) {
-        this.lendTime = transTime(lendTime);
-    }
-
     public Order() {
-        this.lendTime=getSystemTime();
-        this.returnTime=null;
+        this.lendTime = getSystemTime();
+        this.returnTime = null;
     }
 
     public Order(int orderID, Date returnTime, int flag) {
@@ -39,18 +21,18 @@ public class Order {
         this.returnTime = transTime(returnTime);
         this.flag = flag;
 
-        this.lendTime=null;
-        this.book=null;
-        this.libUser=null;
+        this.lendTime = null;
+        this.book = null;
+        this.libUser = null;
     }
 
     public Order(Book book, LibUser libUser) {
         this.book = book;
         this.libUser = libUser;
 
-        this.lendTime=getSystemTime();
-        this.returnTime=null;
-        this.flag=0;
+        this.lendTime = getSystemTime();
+        this.returnTime = null;
+        this.flag = 0;
     }
 
     public Order(int orderID, Book book, LibUser libUser, String lendTime, String returnTime, int flag) {
@@ -60,6 +42,16 @@ public class Order {
         this.lendTime = lendTime;
         this.returnTime = returnTime;
         this.flag = flag;
+    }
+
+    public static String transTime(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(date);
+    }
+
+    public static String getSystemTime() {
+        Date date = new Date();
+        return transTime(date);
     }
 
     public int getOrderID() {
@@ -90,8 +82,16 @@ public class Order {
         return lendTime;
     }
 
+    public void setLendTime(Date lendTime) {
+        this.lendTime = transTime(lendTime);
+    }
+
     public String getReturnTime() {
         return returnTime;
+    }
+
+    public void setReturnTime(Date returnTime) {
+        this.returnTime = transTime(returnTime);
     }
 
     public int getFlag() {
